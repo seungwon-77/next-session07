@@ -127,7 +127,7 @@ export default function Chat({ character }: { character: CharacterDisplay }) {
         <header className="chat-header">
           {/* 캐릭터 사진 넣는 자리 */}
           <div className="character-photo-slot" aria-label="캐릭터 사진 자리">
-            <Image src="/character.jpg" alt="치이카와" width={64} height={64} />
+            <Image src="/character.jpg" alt={character.name} width={64} height={64} />
           </div>
           <div className="character-info">
             <div className="character-name-row">
@@ -160,7 +160,7 @@ export default function Chat({ character }: { character: CharacterDisplay }) {
           aria-live="polite"
         >
           <p className="conversation-start">
-            <span /> 치이카와를 발견했다! <span />
+            <span /> {character.name}를 발견했다! <span />
           </p>
           <article className="message assistant">
             <span className="speaker">{character.name}</span>
