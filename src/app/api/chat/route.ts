@@ -29,7 +29,8 @@ export async function POST(request: Request) {
     if (error instanceof OpenAI.APIError && error.status === 429) {
       return Response.json({ error: "API 사용 한도에 도달했어요. 잠시 후 다시 시도하거나 사용량을 확인해 주세요." }, { status: 429 });
     }
-    // API 키, 공급자의 내부 오류와 스택 정보는 브라우저에 전달하지 않습니다.
+    // API 키, 공급자의 내부 오류와 스택 정보는 브라우저에 전달하지 않습니다. 원인은 서버 로그에만 남깁니다.
+    console.error("chat failed:", error instanceof OpenAI.APIError ? `${error.status} ${error.code} ${error.message}` : error);
     return Response.json({ error: "AI 서버에서 답변을 받지 못했어요. 서버 설정을 확인하거나 잠시 후 다시 보내 주세요." }, { status: 502 });
   }
 }
